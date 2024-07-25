@@ -16,6 +16,7 @@ function Reception() {
         <h1 className={styles.title}>
           Composant reception
         </h1>
+        <p>données : </p>
         {listeWebhooks}
       </main>
     </div>
