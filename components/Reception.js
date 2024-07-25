@@ -11,7 +11,7 @@ function Reception() {
   }, [])
   
   let listeWebhooks = "Pas de donnée ..."
-  if(!webhook){
+  if(webhook){
     listeWebhooks = webhook.map((element, i)=><div key={i}><p>{element.action}</p><p>{element.object}</p><p>{element.company_id}</p><p>{element.user_id}</p></div>)
   }
 
