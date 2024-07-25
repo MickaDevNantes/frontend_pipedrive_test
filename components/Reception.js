@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 function Reception() {
   const [webhook, setWebhook] = useState([])
 
-  fetch('https://backend-pipedrive-test.vercel.app/getWebhook').then(reponse=>reponse.json()).then(data=>{
-    setWebhook(data.result)
-  })
+  useEffect(()=>{
+    fetch('https://backend-pipedrive-test.vercel.app/getWebhook').then(reponse=>reponse.json()).then(data=>{
+      setWebhook(data.result)
+    })
+  }, [])
   
   let listeWebhooks = "Pas de donnée ..."
   if(!webhook){
