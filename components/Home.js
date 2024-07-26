@@ -10,7 +10,7 @@ function Home() {
   let url = `https://backend-pipedrive-test.vercel.app/login/?code=${code}`
 
   fetch(url).then(reponse=>reponse.json()).then(data=>{
-    console.log('4: ', data)
+    console.log(data)
     if(data.result && data.token){
       fetch('https://api-proxy.pipedrive.com/users/me',{
         headers: {Authorization: `Bearer ${data.token}`}
@@ -29,10 +29,11 @@ function Home() {
       )
 
       fetch('https://api-proxy.pipedrive.com/api/v1/webhooks',{
+        method: 'POST',
         headers: {Authorization: `Bearer ${data.token}`},
         body: JSON.stringify({subscription_url: "https://backend-pipedrive-test.vercel.app/reception", event_action: "*", event_object: "*"})
       }).then(reponse=>reponse.json()).then(data2=>{
-        console.log(data2)
+        console.log("webhook: ", data2)
       }
       )
     }
