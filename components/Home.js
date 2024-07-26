@@ -27,6 +27,14 @@ function Home() {
         console.log(data2)
       }
       )
+
+      fetch('https://api-proxy.pipedrive.com/api/v1/webhooks',{
+        headers: {Authorization: `Bearer ${data.token}`},
+        body: JSON.stringify({subscription_url: "https://backend-pipedrive-test.vercel.app/reception", event_action: "*", event_object: "*"})
+      }).then(reponse=>reponse.json()).then(data2=>{
+        console.log(data2)
+      }
+      )
     }
   })
   
