@@ -1,8 +1,11 @@
 import styles from '../styles/Home.module.css';
 import {useEffect, useState} from 'react'
 import { useRouter } from 'next/router';
+import SurfaceSDK from '@pipedrive/app-extensions-sdk';
 
 function Home() {
+  const sdk = new SurfaceSDK();
+  sdk.initialize();
   const router = useRouter();
   const { code } = router.query;
   const [username, setUsername] = useState('')
@@ -28,18 +31,18 @@ function Home() {
       }
       )
 
-      fetch('https://api-proxy.pipedrive.com/api/v1/webhooks',{
-        method: 'POST',
-        headers: {Authorization: `Bearer ${data.token}`},
-        body: new URLSearchParams({
-          subscription_url: "https://backend-pipedrive-test.vercel.app/reception",
-          event_action: "*",
-          event_object: "*",
-        })
-      }).then(reponse=>reponse.json()).then(data2=>{
-        console.log("webhook: ", data2)
-      }
-      )
+      // fetch('https://api-proxy.pipedrive.com/api/v1/webhooks',{
+      //   method: 'POST',
+      //   headers: {Authorization: `Bearer ${data.token}`},
+      //   body: new URLSearchParams({
+      //     subscription_url: "https://backend-pipedrive-test.vercel.app/reception",
+      //     event_action: "*",
+      //     event_object: "*",
+      //   })
+      // }).then(reponse=>reponse.json()).then(data2=>{
+      //   console.log("webhook: ", data2)
+      // }
+      // )
     }
   })
   
