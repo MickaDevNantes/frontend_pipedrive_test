@@ -4,8 +4,11 @@ import { useRouter } from 'next/router';
 import SurfaceSDK from '@pipedrive/app-extensions-sdk';
 
 function Home() {
-  const sdk = new SurfaceSDK();
-  sdk.initialize();
+  const test = async ()=>{
+    const sdk = await new SurfaceSDK();
+    await sdk.initialize();
+  }
+  test()
   const router = useRouter();
   const { code } = router.query;
   const [username, setUsername] = useState('')
